@@ -1,3 +1,4 @@
+#include <stdio.h>
 template <typename T>
 class MultiStack {
     private:
