@@ -60,4 +60,31 @@ bool findPathHelper(std::vector<Coordinate> path, bool matrix[][], int rl, int c
     }
     return false;
 }
+/* naive find magic number without dups into account */
+int findMagicNum(int array[], int start, int end) {
+    if(start > end)
+        return -1;
+    int mid = (start + end) / 2;
+    if(array[mid] == mid)
+        return mid;
+    else if(array[mid] > mid)
+        return findMagicNum(aray, start, mid - 1);
+    else
+         return findMagicNum(aray, mid + 1 , end);
+}
 
+
+/* find magic number with duplicates taken into account */
+int findMagicNum(int array[], int start, int end) {
+    if(start > end)
+        return -1;
+    int mid = (start + end) / 2;
+    if(array[mid] == mid)
+        return mid;
+    int leftFind = findMagicNum(array, start, min(mid - 1 , array[mid]));
+    if(leftFind != -1)
+        return leftFind;
+    int rightFind = findMagicNum(array, max(mid + 1, array[mid]), end);
+    return rightFind;
+
+}
